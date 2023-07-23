@@ -1,6 +1,6 @@
 {
   "name": "modify-package-json",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "",
   "bin": {
     "modify-package-json": "./modify-package-json.mjs"
