@@ -1,4 +1,22 @@
 {
   "name": "modify-package-json",
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "description": "",
+  "bin": {
+    "modify-package-json": "./modify-package-json.mjs"
+  },
+  "repository": "https://github.com/jase88/modify-package-json",
+  "homepage": "https://github.com/jase88/modify-package-json#readme",
+  "author": "",
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "npmtool"
+  ],
+  "devDependencies": {
+    "prettier": "3.0.0"
+  },
+  "scripts": {
+    "format": "prettier . --write"
+  }
 }
