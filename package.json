@@ -1,17 +1,20 @@
 {
-  "name": "modify-package-json",
+  "name": "filter-npm-deps",
   "version": "0.0.1",
   "description": "",
   "bin": {
-    "modify-package-json": "./modify-package-json.mjs"
+    "filter-npm-deps": "./filter-npm-deps.mjs"
   },
-  "repository": "https://github.com/jase88/modify-package-json",
-  "homepage": "https://github.com/jase88/modify-package-json#readme",
+  "repository": "https://github.com/jase88/filter-npm-deps",
+  "homepage": "https://github.com/jase88/filter-npm-deps#readme",
   "author": "",
   "license": "MIT",
   "keywords": [
-    "cli",
-    "npmtool"
+    "filter",
+    "deps",
+    "npm",
+    "package.json",
+    "dependencies"
   ],
   "devDependencies": {
     "prettier": "3.0.0"
