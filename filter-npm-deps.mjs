@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 import { parseArgs } from 'node:util';
-import { log } from 'node:console';
+import { log, error } from 'node:console';
 import { cwd, exit } from 'node:process';
+import { createRequire } from 'node:module';
 
 const {
   values: { deps, help },
@@ -31,33 +32,26 @@ Options:
   exit(0);
 }
 
-const packageJsonFileName = 'package.json';
-const currentPath = cwd();
+const require = createRequire(import.meta.url);
+const packageJsonFileName = './package.json';
 
-if (!existsSync(packageJsonFileName)) {
-  throw new Error(
-    `Couldn't find a package.json in ${currentPath}.
-    Please make sure you run the command in a directory containing a package.json file.`,
-  );
-}
-
-let packageJSON = {};
+let packageJSON;
 
 try {
-  packageJSON = JSON.parse(readFileSync(packageJsonFileName, 'utf8'));
-} catch (error) {
-  throw new Error(
-    `Could not parse the content of package.json in ${currentPath}.
-    Error: ${error}`,
+  packageJSON = require(packageJsonFileName);
+} catch {
+  error(
+    `Couldn't find a package.json in '${cwd()}'. Please make sure you run the command in a directory containing a package.json file.`
   );
+  exit(-1);
 }
 
 const { optionalDependencies, devDependencies, dependencies } = packageJSON;
 const filterDeps = (object) =>
   Object.fromEntries(
     Object.entries(object ?? {}).filter(([key]) =>
-      dependenciesToKeep.includes(key),
-    ),
+      dependenciesToKeep.includes(key)
+    )
   );
 
 const newPackageJSON = {
