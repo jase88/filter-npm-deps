@@ -1,6 +1,6 @@
 {
   "name": "filter-npm-deps",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A convenient Node.js CLI script to filter and only keep a list of dependencies from your package.json",
   "engines": {
     "node": ">=18"
