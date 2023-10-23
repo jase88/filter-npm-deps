@@ -41,7 +41,7 @@ if (!existsSync(packageJsonFileName)) {
   );
 }
 
-let packageJSON = {};
+let packageJSON
 
 try {
   packageJSON = JSON.parse(readFileSync(packageJsonFileName, 'utf8'));
@@ -52,7 +52,6 @@ try {
   );
 }
 
-const { optionalDependencies, devDependencies, dependencies } = packageJSON;
 const filterDeps = (object) =>
   Object.fromEntries(
     Object.entries(object ?? {}).filter(([key]) =>
@@ -60,11 +59,15 @@ const filterDeps = (object) =>
     ),
   );
 
-const newPackageJSON = {
-  ...packageJSON,
-  optionalDependencies: filterDeps(optionalDependencies),
-  devDependencies: filterDeps(devDependencies),
-  dependencies: filterDeps(dependencies),
-};
+for(const dependencyField of ['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies']) {
+  if(packageJSON[dependencyField]) {
+    packageJSON[dependencyField] = filterDeps(packageJSON[dependencyField])
+  }
+}
 
-writeFileSync(packageJsonFileName, JSON.stringify(newPackageJSON), 'utf8');
+if(packageJSON.bundleDependencies) {
+  packageJSON.bundleDependencies = packageJSON.bundleDependencies.filter(dependency => dependenciesToKeep.includes(dependency))
+}
+
+
+writeFileSync(packageJsonFileName, JSON.stringify(packageJSON), 'utf8');

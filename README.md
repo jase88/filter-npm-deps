@@ -4,7 +4,12 @@
 
 filter-npm-deps is a convenient Node.js CLI script designed to filter a given list of dependencies from your `package.json`.
 
-It supports filtering dependencies from all three commonly used dependency fields: _dependencies_, _devDependencies_, and _optionalDependencies_.
+It supports filtering dependencies from the commonly used dependency fields:
+ - [dependencies](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#dependencies)
+ - [devDependencies](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#devdependencies)
+ - [optionalDependencies](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#optionaldependencies)
+ - [peerDependencies](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#peerdependencies)
+ - [bundleDependencies](https://docs.npmjs.com/cli/v10/configuring-npm/package-json#bundledependencies)
 
 ## 🎯 Motivation
 
@@ -77,4 +82,4 @@ For example with npm:
 While filter-npm-deps serves as a simple solution for filtering dependencies, there are other tools available that you might find useful:
 
 - [jq](https://jqlang.github.io/jq/manual/) is a powerful command-line tool for processing JSON data. It can be used to filter for nested properties, but it requires explicit handling of all three dependency fields.
-- [install-subset](https://github.com/tabrindle/install-subset) offers a different approach by enabling you to define specific subsets of npm dependencies that should be installed. This allows you to have more fine-grained control over your project's dependencies.
+- [install-subset](https://github.com/tabrindle/install-subset) offers a different approach by enabling you to define specific subsets of npm dependencies that should be installed.
